@@ -13,9 +13,15 @@ namespace PasswordManager.Application
     public class AccountRepository : IAccountRepository
     {
         private List<Account> _accounts;
-        public AccountRepository(IAccountManager accountManager)
+
+        public AccountRepository()
         {
-            _accounts = accountManager.GetAccounts("../passwords.json");           
+            _accounts = new List<Account>();
+        }
+
+        public AccountRepository(List<Account> accounts)
+        {          
+            _accounts = accounts;   
         }      
         public List<Account> Accounts => _accounts;
 
