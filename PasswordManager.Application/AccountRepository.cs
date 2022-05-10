@@ -9,12 +9,13 @@ using Newtonsoft.Json;
 
 namespace PasswordManager.Application
 {
+    // Class to work with accounts buffer
     public class AccountRepository : IAccountRepository
     {
         private List<Account> _accounts;
         public AccountRepository(IAccountManager accountManager)
         {
-            _accounts = accountManager.GetAccounts("../passwords.json");
+            _accounts = accountManager.GetAccounts("../passwords.json");           
         }      
         public List<Account> Accounts => _accounts;
 

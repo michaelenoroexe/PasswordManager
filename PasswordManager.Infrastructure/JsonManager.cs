@@ -29,7 +29,7 @@ namespace PasswordManager.Infrastructure
                 throw;
             }
         }
-
+        // Saving accounts in file
         public async Task<bool> SaveAccounts(List<Account> accounts, string path = @"./passwords.json")
         {
             try
