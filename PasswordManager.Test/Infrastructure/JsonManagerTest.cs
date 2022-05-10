@@ -30,13 +30,23 @@ namespace PasswordManager.Test.Infrastructure
                 new Account(7,"https://www.rook.com/","denis","dens"),
                 new Account(8,"https://www.cooking.com/","denis","dis"),
                 new Account(9,"https://www.bart.com/","denis","deis"),
+                new Account(10,"https://www.youtube.com/","disds","ddffd"),
             };       
         }
 
         [Test]
-        public async Task SaveAccounts()
+        public async Task ASaveAccountsTest()
         {
             Assert.IsTrue(await _jsonManager.SaveAccounts(_accounts));
+            Assert.IsFalse(await _jsonManager.SaveAccounts(_accounts, ""));
+        }
+
+        [Test]
+        public async Task GetAccountsTest()
+        {
+            Assert.AreEqual(10, _jsonManager.GetAccounts().Count);
+            Assert.Catch(()=>_jsonManager.GetAccounts("./"));
+
         }
     }
 }

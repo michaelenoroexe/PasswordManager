@@ -9,7 +9,7 @@ namespace PasswordManager.Core
 {
     public interface IAccountManager
     {
-        public List<Account> GetAccounts();
-        public Task<bool> SaveAccounts(List<Account> accounts);
+        public List<Account> GetAccounts(string path);
+        public Task<bool> SaveAccounts(List<Account> accounts, string path);
     }
 }
