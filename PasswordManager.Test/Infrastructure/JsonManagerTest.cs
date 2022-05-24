@@ -37,8 +37,8 @@ namespace PasswordManager.Test.Infrastructure
         [Test]
         public async Task ASaveAccountsTest()
         {
-            Assert.IsTrue(await _jsonManager.SaveAccounts(_accounts, "./passwords.json"));
-            Assert.IsFalse(await _jsonManager.SaveAccounts(_accounts, ""));
+            Assert.IsTrue(_jsonManager.SaveAccounts(_accounts, "./passwords.json"));
+            Assert.IsFalse(_jsonManager.SaveAccounts(_accounts, ""));
         }
 
         [Test]

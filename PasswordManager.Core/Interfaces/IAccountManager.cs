@@ -10,6 +10,6 @@ namespace PasswordManager.Core
     public interface IAccountManager
     {
         public List<Account> GetAccounts(string path);
-        public Task<bool> SaveAccounts(List<Account> accounts, string path);
+        public bool SaveAccounts(List<Account> accounts, string path=@"./", string fileName=@"passwords.json");
     }
 }

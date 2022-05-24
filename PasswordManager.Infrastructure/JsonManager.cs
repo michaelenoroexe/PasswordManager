@@ -16,6 +16,7 @@ namespace PasswordManager.Infrastructure
             //TO-DO тут логика получения данных
             try
             {
+                if(Directory.Exists(path)) throw new Exception("Invalid directory");
                 List<Account> accounts;
                 using (StreamReader sw = new StreamReader(path))
                 {
@@ -30,14 +31,15 @@ namespace PasswordManager.Infrastructure
             }
         }
         // Saving accounts in file
-        public async Task<bool> SaveAccounts(List<Account> accounts, string path = @"./passwords.json")
+        public bool SaveAccounts(List<Account> accounts, string path = @"./", string fileName = @"passwords.json")
         {
             try
             {
-                var sortedAccounts = await Task.Run(()=>accounts.AsQueryable().OrderBy(acc=>acc.Url));
+                Directory.CreateDirectory(path);
+                var sortedAccounts = accounts.AsQueryable().OrderBy(acc => acc.Url);
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
-                using (StreamWriter sw = new StreamWriter(path))
+                using (StreamWriter sw = new StreamWriter(path+fileName))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
                     serializer.Serialize(writer, sortedAccounts);
@@ -46,6 +48,7 @@ namespace PasswordManager.Infrastructure
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }

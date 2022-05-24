@@ -34,10 +34,10 @@ namespace PasswordManager.Application
 
         public IAccountRepository AccountRepository => _accountRepository;
 
-        public async void SaveAsync()
-        {
-            string path = "./path";
-            await _accountManager.SaveAccounts(_accountRepository.Accounts, path);
+        public void Save()
+        {            
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"\\PasswordManager\\";
+            _accountManager.SaveAccounts(_accountRepository.Accounts, path);
         }
 
         public List<Account> ImportFrom(IAccountManager accountManager ,string path)
