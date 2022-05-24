@@ -47,6 +47,16 @@ namespace PasswordManager.Application
             return false;
         }
 
+        public bool InsertRange(IEnumerable<Account> accounts)
+        {
+            if(accounts is not null && accounts.Count() > 0)
+            {
+                _accounts.AddRange(accounts);
+                return true;
+            }
+            return false;
+        }
+
         public bool Update(int id, Account account)
         {
             var needAccount = _accounts.Where(account => account.Id == id).FirstOrDefault();

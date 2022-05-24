@@ -11,6 +11,7 @@ namespace PasswordManager.Core
     {
         public List<Account> Accounts { get;}
         public bool Insert(Account account);
+        public bool InsertRange(IEnumerable<Account> accounts);
         public bool Update(int id, Account account);
         public bool Delete(int id);
     }
