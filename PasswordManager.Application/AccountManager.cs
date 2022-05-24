@@ -15,12 +15,11 @@ namespace PasswordManager.Application
         private IAccountRepository _accountRepository;
         private IAccountManager _accountManager;
 
-        private readonly string directoryFolder = $"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData)}\\PasswordManager";
+        //private readonly string directoryFolder = $"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData)}\\PasswordManager";
 
         public AccountManager()
         {
             _accountManager = new JsonManager();
-
             //bool isNotExist = CreateDirectory();
 
             //if(!isNotExist)
@@ -28,12 +27,16 @@ namespace PasswordManager.Application
 
         }
 
+        public AccountManager(IAccountRepository accounts) : this()
+        { 
+            _accountRepository = accounts;            
+        }
+
         public IAccountRepository AccountRepository => _accountRepository;
 
         public async void SaveAsync()
         {
-            string path = "";
-
+            string path = "./path";
             await _accountManager.SaveAccounts(_accountRepository.Accounts, path);
         }
 
@@ -50,16 +53,16 @@ namespace PasswordManager.Application
             accountManager.SaveAccounts(_accountRepository.Accounts, path);
         }
 
-        private bool CreateDirectory()
-        {
-            if (Directory.Exists(directoryFolder)) 
-                return false;
+        //private bool CreateDirectory()
+        //{
+        //    if (Directory.Exists(directoryFolder)) 
+        //        return false;
             
-            Directory.CreateDirectory(directoryFolder);
+        //    Directory.CreateDirectory(directoryFolder);
 
-            return true;
+        //    return true;
 
-        }
+        //}
 
     }
 }

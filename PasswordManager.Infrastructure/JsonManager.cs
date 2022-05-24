@@ -26,7 +26,7 @@ namespace PasswordManager.Infrastructure
             }
             catch (Exception ex)
             {
-                throw;
+                return new List<Account>();
             }
         }
         // Saving accounts in file
