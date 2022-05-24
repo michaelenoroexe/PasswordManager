@@ -27,17 +27,38 @@ namespace PasswordManager.Application
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var account = _accounts.Where(account => account.Id == id).FirstOrDefault();
+
+            if (account is not null)
+            {
+                _accounts.Remove(account);
+                return true;
+            }
+            return false;
         }
 
         public bool Insert(Account account)
         {
-            throw new NotImplementedException();
+            if(account is not null)
+            {
+                _accounts.Add(account);
+                return true;
+            }
+            return false;
         }
 
         public bool Update(int id, Account account)
         {
-            throw new NotImplementedException();
+            var needAccount = _accounts.Where(account => account.Id == id).FirstOrDefault();
+            if (account is not null && needAccount is not null)
+            {
+                Delete(needAccount.Id);
+
+                account.Id = id;
+                _accounts.Add(account);
+                return true;
+            }
+            return false;
         }
     }
 }
