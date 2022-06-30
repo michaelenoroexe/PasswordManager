@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PasswordManager.Application
+namespace PasswordManager.App
 {
     // Class to work with accounts buffer
     public class AccountRepository : IAccountRepository
@@ -15,8 +15,8 @@ namespace PasswordManager.Application
         private List<Account> _accounts;
         public AccountRepository(IAccountManager accountManager)
         {
-            _accounts = accountManager.GetAccounts("../passwords.json");           
-        }      
+            _accounts = accountManager.GetAccounts("../passwords.json");
+        }
         public List<Account> Accounts => _accounts;
 
         public bool Delete(int id)
