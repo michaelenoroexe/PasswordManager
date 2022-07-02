@@ -9,6 +9,7 @@ namespace PasswordManager.Core.Models
 {
     public record Account
     {
+        public Account() { }
         public Account(int id, string url, string login, string password)
         {
             Id=id;

@@ -24,5 +24,7 @@ namespace PasswordManager.WPF.View
         {
             InitializeComponent();
         }
+
+        
     }
 }

@@ -4,8 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PasswordManager.WPF.View"
+             xmlns:i="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:viewModel="clr-namespace:PasswordManager.WPF.ViewModel"
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:AccountsViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
@@ -25,13 +34,18 @@
                 <TextBlock Width="150" Text="Login"/>
                 <TextBlock Width="150" Text="Password"/>
             </StackPanel>
-            
-            <ListBox Grid.Row="1">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Width="250">http://test.domain.com</TextBlock>
-                    <TextBlock Width="150" >testlogin</TextBlock>
-                    <TextBlock Width="150" >testpassword</TextBlock>
-                </StackPanel>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Accounts}"
+                     SelectedItem="{Binding SelectedAccount}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="250" Text="{Binding Url}"/>
+                            <TextBlock Width="150" Text="{Binding Login}"/>
+                            <TextBlock Width="150" Text="{Binding Password}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
         
